@@ -34,6 +34,11 @@ let colorList=["#007700","#2244FF","#FF0000","#F20395"]
             rotate_n: null,
             shoot:null
         }
+        let audioFiles=[
+            "./source/blast.mp3",
+            "./source/hit.mp3",
+            "./source/shoot.mp3"
+        ]
         class Danmaku{
             constructor(text,size=12,color="#FFFFFF",velocity=300){
                 this.text=text
@@ -302,7 +307,7 @@ let colorList=["#007700","#2244FF","#FF0000","#F20395"]
 
             }
         }
-        init()
+
         function init() {
             confInterface(main_container);
             registerCallback();
@@ -311,6 +316,23 @@ let colorList=["#007700","#2244FF","#FF0000","#F20395"]
             spawnMob()
             initRenderTimer();
             // spawnDanmaku()
+        }
+        function preloadAudio(url) {
+            var audio = new Audio();
+            // once this file loads, it will call loadedAudio()
+            // the file will be kept by the browser as cache
+            audio.addEventListener('canplaythrough', loadedAudio, false);
+            audio.src = url;
+        }
+        var loaded = 0;
+        function loadedAudio() {
+            // this will be called every time an audio file is loaded
+            // we keep track of the loaded files vs the requested files
+            loaded++;
+            if (loaded == audioFiles.length){
+            	// all have loaded
+                init();
+            }
         }
         function spawnDanmaku(){
             setInterval(()=>{
@@ -683,4 +705,8 @@ let colorList=["#007700","#2244FF","#FF0000","#F20395"]
         }
         function rgb(r, g, b) {
             return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`
+        }
+
+        for (var i in audioFiles) {
+            preloadAudio(audioFiles[i]);
         }
