@@ -1,0 +1,150 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-02-01 10:01:22
+ * @LastEditTime: 2021-02-03 18:16:36
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \FPSTraining\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏系统练习</title>
+    <style>
+        body {
+            padding: 0px;
+            margin: 0px;
+            display: flex;
+            flex-direction: column;
+            flex-flow: column;
+            align-items: stretch;
+            height: 100vh;
+        }
+
+        .container {
+            height: 100%;
+            width: 100%;
+            background-color: rgb(37, 37, 38);
+        }
+
+        .statusbar {
+            padding: 2px;
+            color: WHITE;
+            font-size: 12px;
+            position: fixed;
+            top: 2px;
+            right: 2px;
+            width: 120px;
+            border: rgb(215, 171, 16) 1px solid;
+            border-radius: 2px;
+        }
+        .notice_bar{
+            padding: 2px;
+            color: WHITE;
+            font-size: 12px;
+            position: fixed;
+            top: 2px;
+            left: 2px;
+            width: 110px;
+            border: rgb(215, 171, 16) 1px solid;
+            border-radius: 2px;
+        }
+        .score_bar{
+            padding: 2px;
+            color: WHITE;
+            font-size: 24px;
+            position: fixed;
+            top: 2px;
+            left: 42vw;
+            min-width: 120px;
+            border: rgb(215, 171, 16) 1px solid;
+            border-radius: 2px;
+        }
+        .weapon_area{
+            padding: 2px;
+            color: WHITE;
+            font-size: 12px;
+            position: fixed;
+            bottom: 2px;
+            right: 2px;
+            width: 60px;
+            border: rgb(215, 171, 16) 1px solid;
+            border-radius: 2px;
+        }
+        .btn{
+            cursor: pointer;
+            width: 100%;
+            user-select:none;
+        }
+        .danmaku_container{
+            height: 100vh;
+            width:100vw;
+            position: absolute;
+            top:0;
+            float: left;
+            display: flex;
+            flex-direction: column;
+            justify-content:flex-start;
+            overflow: hidden;
+            pointer-events: none
+        }
+        .selected{
+            background-color:#404045
+        }
+        .danmaku{
+            margin-top:12px;
+            width: 100%;
+            -webkit-animation: danmu 8s linear infinite;
+            animation: danmu 8s linear infinite;
+            color: #fff;
+            text-align: right;
+        }
+
+        @-webkit-keyframes danmaku{
+            0% {-webkit-transform:translateX(0);}
+          100% {-webkit-transform:translateX(-200%);}
+        }
+
+        @keyframes danmu{
+           0% {transform:translateX(0);}
+          100% {transform:translateX(-200%);}
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="container" class="container">
+        <div id="statusbar" class="statusbar">
+            <div id="frameIndicator">fps:0</div>
+            <div id="size">field size:100×100</div>
+            <div id="mouse">pointer:100,100</div>
+            <div id="playerpos">player:100,100</div>
+            <div id="playerori">orientation:45deg</div>
+            <div id="shooted">shooted:0</div>
+        </div>
+        <div class="notice_bar">
+            <div>移动:W,S,鼠标拖动</div>
+            <div>转向:A,D</div>
+            <div>射击:Space</div>
+        </div>
+        <div class="score_bar">
+            <div id="score">得分:0</div>
+        </div>
+        <div class="weapon_area">
+            <div id="rapid" class="btn selected" onclick="confWeapon(1)">连射</div>
+            <div id="spread" class="btn" onclick="confWeapon(2)">散弹</div>
+            <div id="laser" class="btn" onclick="confWeapon(3)">激光</div>
+        </div>
+        <canvas id="canvas"></canvas>
+        <div id="danmaku_container" class="danmaku_container"></div>
+    </div>
+    <script src="./main.js">
+        
+    </script>
+</body>
+
+</html>
